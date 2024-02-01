@@ -1,3 +1,4 @@
+*/
 pipeline {
     agent any
 
@@ -29,3 +30,25 @@ pipeline {
         }
     }
 }
+/*
+
+*/
+node {
+    def mvnHome
+    stage('scm') {
+        git credentialsId: 'cb4bfade-813a-43eb-8f0b-229e1a858873', url: 'https://github.com/reddykumarnag/maven-sample-project.git'
+    }
+    stage('install') {
+        sh "mvn install"
+    }
+    stage('test') {
+        sh "mvn test"
+    }
+    stage('compile') {
+        sh "mvn compile"
+    }
+    stage('package') {
+        sh "mvn package"
+    }
+}    
+/*
