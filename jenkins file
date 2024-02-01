@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('scm') {
+            steps {
+                git credentialsId: 'cb4bfade-813a-43eb-8f0b-229e1a858873', url: 'https://github.com/reddykumarnag/maven-sample-project.git'
+            }
+        }
+    stage('install') {
+        steps {
+            sh "mvn install"
+        }    
+    }
+    stage('test') {
+        steps {
+            sh "mvn test"
+        }
+    }
+    stage('compile') {
+        steps {
+            sh "mvn compile"
+        }
+    }
+    stage('package') {
+        steps {
+            sh ("mvn package")
+           }
+        }
+    }
+}
